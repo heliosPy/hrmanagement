@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
+    'hradmin.apps.HradminConfig',
+
+    #third party apps
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
