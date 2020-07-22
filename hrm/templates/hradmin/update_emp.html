@@ -1,0 +1,22 @@
+{% extends "hradmin/home.html" %}
+{% block body %}
+<div class="container-fluid" style="font-family: Century">
+<div class="row" style="border: 2px solid blue;text-align: center;font-size: 25px;background-color: blue;color: white">
+    <div class="col-2"style="border: 1px solid black">Employe ID</div>
+    <div class="col-3"style="border: 1px solid black">Name</div>
+    <div class="col-3"style="border: 1px solid black">Desgination</div>
+    <div class="col-4"style="border: 1px solid black">Address</div>
+
+</div>
+{% for x in data %}
+    <div class="row" >
+    <div class="col-2" style="border: 1px solid black;font-size: 20px"><a href="{% url 'hradmin:ind_update' %}?idno={{ x.user_id }}">{{x.user_id}}</a> </div>
+    <div class="col-3" style="border: 1px solid black;font-size: 20px">{{ x.name }}</div>
+    <div class="col-3" style="border: 1px solid black;font-size: 20px">{{ x.Designation }}</div>
+    <div class="col-4" style="border: 1px solid black;font-size: 20px">{{ x.user.email }}</div>
+
+
+</div>
+{% endfor %}
+</div>
+{% endblock %}

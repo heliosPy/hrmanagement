@@ -1,0 +1,116 @@
+{% extends "manager/manager_recu.html" %}
+{% block title %}
+    <title>Modify Recuirment Details </title>
+    <style>
+    #r1{
+
+        margin: 2px;
+        padding: 2px;
+        border-radius: 2px;
+        font-size: 18px;
+        font-style: italic;
+        font-weight: bold;
+        color: blue;
+    }
+    .col-1{
+        padding-right: 0px;
+        text-align: right;
+        font-weight: bold;
+        font-size: 18px;
+        color: blue;
+    }
+    .col-5{
+        align-content: start;
+    }
+    </style>
+{% endblock %}
+{% block body %}
+<h1 style="font-size: 35px; border: blue 5px solid;padding: 10px; font-weight: bold;text-align: center">Modifying Recuirtment Details</h1>
+    <form action="{%  url 'manage_recu' %}" method="post">
+    {% csrf_token %}
+    <br>
+    <br>
+    <span style="color: black; font-weight: bold; font-size: 20px">Select Oppertunity Code</span>
+    <input type="number" name="t1" placeholder="Enter the Number" required>
+    <button type="submit" style="border-radius: 10px; color: blue" name="bname" value="getdetail">Get Details</button>
+    </form>
+    <br>
+    <br>
+
+    {% if message  %}
+        <h3 style="background-color: firebrick; color: white;width: 70%">Data Unavaliable : Oppurtinity Code--- {{ message }}, Doesnt Exist</h3>
+    {% endif %}
+    {% if data %}
+    <div class="container-fluid"   style="margin: 5px;padding: 10px; padding-left: 60px">
+    <form action="{% url 'manage_recu' %}"  method="post">
+        {% csrf_token %}
+    <div class="row">
+        <div class="col-8" style="background-color: blue ;width: 50px; color: white; text-align: center; font-size: 30px; margin-bottom: 15px"> RECUIRMENT DETAIL UPDATE</div>
+    </div>
+    <div class="row">
+        <div class=" col-3" id="r1">Oppertunity Code</div>
+        <div class="col-1">:</div>
+        <div class="col-5" >{{ data.op_code }}</div>
+        <div class="col-3" >{{ data.op_code.errors }}</div>
+    </div>
+    <div class="row">
+        <div class=" col-3" id="r1">Qualification</div>
+          <div class="col-1">:</div>
+        <div class="col-5" >{{ data.qualification }}</div>
+        <div class="col-3" >{{ data.qualification.errors }}</div>
+    </div>
+    <div class="row">
+        <div class=" col-3" id="r1">Regestration Start From</div>
+          <div class="col-1">:</div>
+        <div class="col-5" >{{ data.regestration_start }}</div>
+        <div class="col-3">{{ data.regestration_start.errors }}</div>
+    </div>
+    <div class="row">
+        <div class=" col-3" id="r1">Age Limit</div>
+          <div class="col-1">:</div>
+        <div class="col-5" >{{ data.Age_limit }}</div>
+        <div class="col-3">{{ data.Age_limit.errors }}</div>
+    </div>
+    <div class="row">
+        <div class=" col-3" id="r1">Last Date to Apply</div>  <div class="col-1">:</div>
+        <div class="col-5" >{{ data.Lastdate_apply }}</div>
+        <div class="col-3">{{ data.Lastdate_apply.errors }}</div>
+    </div>
+    <div class="row">
+        <div class=" col-3" id="r1">Department ID</div>
+          <div class="col-1">:</div>
+        <div class="col-5" >{{ data.DepartmentId }}</div>
+        <div class="col-3">{{ data.DepartmentId.errors }}</div>
+    </div>
+    <div class="row">
+        <div class=" col-3" id="r1">No of Opennings</div>
+          <div class="col-1">:</div>
+        <div class="col-5" >{{ data.positions}}</div>
+        <div class="col-3">{{ data.positions.errors }}</div>
+    </div>
+    <div class="row">
+        <div class=" col-3" id="r1">Description</div>
+          <div class="col-1">:</div>
+        <div class="col-5" >{{ data.Description }}</div>
+        <div class="col-3">{{ data.Description.errors }}</div>
+    </div>
+         <div class="row">
+        <div class=" col-3" id="r1">Responsibilites</div>
+               <div class="col-1">:</div>
+        <div class="col-5" >{{ data.Responsibilites }}</div>
+        <div class="col-3">{{ data.Responsibilites.errors }}</div>
+    </div>
+         <div class="row">
+        <div class=" col-3" id="r1">Contact</div>  <div class="col-1">:</div>
+        <div class="col-5">{{ data.contact }}</div>
+        <div class="col-3">{{ data.contact.errors }}</div>
+    </div>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-4"><button type="submit" name="bname" value="rupdate" style="margin-top: 30px; text-align: center; background-color: gainsboro; color: blue; font-size: 28px">Update Details</button> </div>
+            <div class="col-6"></div>
+        </div>
+        </form>
+    </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "index.html" %}
+ {% block menu %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" style="font-family: Century" href="{% url 'manager_home' %}">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <a class="navbar-brand"  style="font-family: Century" href="{% url 'manage_recu' %}">Recuirtment</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <a class="navbar-brand" style="font-family: Century" href="{% url 'interv_sched' %}">Interview-Schedule</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+        </nav>
+
+
+
+    {% endblock %}
+{% block sidebar %}
+      <div style="border: 5px solid black; padding: 5px ; border-radius: 10px;margin-top: 20px">
+        <div class="list-group" style="text-align: center">
+             <a href="#" class="list-group-item list-group-item-action active">
+                Sub Menu
+            </a>
+            <a href="#" class="list-group-item list-group-item-action ">
+                View Profile
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">Change Password</a>
+
+            <a href="{% url 'home' %}?name=nrd" class="list-group-item list-group-item-action">logout</a>
+</div>
+
+    </div>
+{% endblock %}

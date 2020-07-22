@@ -1,0 +1,34 @@
+{% extends "manager/manager_recu.html" %}
+{% block title %}
+    <title>Recuirment Delete</title>
+{% endblock %}
+{% block body %}
+    <div class="container-fluid" style="font-family: Century">
+<div class="row" style="border: 2px solid blue;text-align: center;font-size: 25px;background-color: blue;color: white">
+    <div class="col-2"style="border: 1px solid black">Rec Code</div>
+    <div class="col-3"style="border: 1px solid black">Qualification</div>
+    <div class="col-3"style="border: 1px solid black">Department</div>
+    <div class="col-4"style="border: 1px solid black">Last Date to Apply</div>
+
+</div>
+<form action="{% url 'manage_recu' %}" method="post"> {% csrf_token %}
+{% for x in data %}
+    <div class="row" >
+    <div class="col-1" style="border: 1px solid black;font-size: 20px"><input type="checkbox" name="t1" value="{{ x.op_code }}" ></div>
+    <div class="col-1" style="border: 1px solid black;font-size: 20px">{{ x.op_code }} </div>
+    <div class="col-3" style="border: 1px solid black;font-size: 20px">{{ x.qualification }}</div>
+    <div class="col-3" style="border: 1px solid black;font-size: 20px">{{ x.DepartmentId }}</div>
+    <div class="col-4" style="border: 1px solid black;font-size: 20px">{{ x.Lastdate_apply }}</div>
+
+
+</div>
+{% endfor %}
+<br>
+<br>
+
+<div class="row">
+    <div class="col-12" style="text-align: center"><button type="submit" name="bname" value="re_delete"><strong>Delete</strong></button> </div>
+</div>
+</form>
+</div>
+{% endblock %}

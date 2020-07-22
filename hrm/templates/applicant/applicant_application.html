@@ -1,0 +1,105 @@
+{% extends 'applicant/applicant_home.html' %}
+
+    {% block title %}
+    <title> Application Regestration</title>
+    <style>
+    #r1{
+
+        margin: 2px;
+        padding: 2px;
+        border-radius: 2px;
+        font-size: 18px;
+        font-style: italic;
+        font-weight: bold;
+        color: blue;
+    }
+    .col-1{
+        padding-right: 0px;
+        text-align: right;
+        font-weight: bold;
+        font-size: 18px;
+        color: blue;
+    }
+    .col-5{
+        align-content: start;
+    }
+    </style>
+
+{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+    <form action="{% url 'app_apply' %}"  method="post"  enctype="multipart/form-data">
+        {% csrf_token %}
+    <div class="row">
+        <div class="col-8" style="background-color: blue ;width: 50px; color: white; text-align: center; font-size: 30px; margin-bottom: 15px"> APPLICATION REGESTRATION </div>
+    </div>
+    <div class="row">
+        <div class=" col-3" id="r1">Name</div>
+        <div class="col-1">:</div>
+        <div class="col-5"><input type="readonly" name="name" maxlength="30" required="" id="id_name" value="{{ applicant.name }}"></div>
+               <div class="col-3" >{{ data.name.errors }}</div>
+    </div>
+    <div class="row">
+        <div class=" col-3" id="r1">Date of Birth</div>
+          <div class="col-1">:</div>
+        <div class="col-5" >{{data.dob}}</div>
+        <div class="col-3" >{{ data.dob.errors }}</div>
+    </div>
+    <div class="row">
+        <div class=" col-3" id="r1">Email</div>
+          <div class="col-1">:</div>
+        <div class="col-5">{{ data.email }}</div>
+
+        <div class="col-3">{{ data.email.errors }}</div>
+    </div>
+    <div class="row">
+        <div class=" col-3" id="r1">Gender</div>
+          <div class="col-1">:</div>
+        <div class="col-5">{{ data.gender }}</div>
+
+        <div class="col-3">{{ data.gender.errors }}</div>
+    </div>
+    <div class="row">
+        <div class=" col-3" id="r1">Mobile Number</div>  <div class="col-1">:</div>
+        <div class="col-5">{{ data.mobile }}</div>
+
+        <div class="col-3">{{ data.mobile.errors }}</div>
+    </div>
+    <div class="row">
+        <div class=" col-3" id="r1">Address</div>
+          <div class="col-1">:</div>
+        <div class="col-5">{{ data.address }}</div>
+
+        <div class="col-3">{{ data.address.errors }}</div>
+    </div>
+    <div class="row">
+        <div class=" col-3" id="r1">Qualification</div>
+          <div class="col-1">:</div>
+        <div class="col-5" >{{ data.qualification}}</div>
+        <div class="col-3">{{ data.qualification.errors }}</div>
+    </div>
+    <div class="row">
+        <div class=" col-3" id="r1">Post</div>
+          <div class="col-1">:</div>
+        <div class="col-5" >{{ data.post }}</div>
+        <div class="col-3">{{ data.post.errors }}</div>
+    </div>
+         <div class="row">
+        <div class=" col-3" id="r1">Percentage</div>
+               <div class="col-1">:</div>
+        <div class="col-5" >{{ data.percentage }}</div>
+        <div class="col-3">{{ data.percentage.errors }}</div>
+    </div>
+         <div class="row">
+        <div class=" col-3" id="r1">Resume</div>  <div class="col-1">:</div>
+        <div class="col-5">{{ data.resume }}</div>
+        <div class="col-3">{{ data.resume.errors }}</div>
+    </div>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-4"><button type="submit" name="bname" value="recsave" style="margin-top: 30px; text-align: center; background-color: gainsboro; color: blue; font-size: 28px">Regester</button> </div>
+            <div class="col-6"></div>
+        </div>
+        </form>
+    </div>
+{% endblock %}

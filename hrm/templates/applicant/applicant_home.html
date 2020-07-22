@@ -1,0 +1,56 @@
+{% extends "index.html" %}
+{% block menu %}
+<h1> Ure in the Apllicant Home</h1>
+{% endblock %}
+{% block body %}
+
+    {% if data %}
+    <div style="height: 100%">
+    <h2 style="color: blue"> Welcome, </h2> <spam style="font-weight: bold; text-transform: capitalize"><h1>{{ data.name }}
+</h1></spam>    </div>
+        {% else %}
+        <h2 style="color: blue"> Welcome, </h2>  </div>
+    {% endif %}
+    <br>
+    <br>
+
+     {% for x in messages %}
+    {{ x }}
+    {% endfor %}
+
+     <h3 style="width: 25%; background-color: blue;color: white">Current Notifications</h3>
+
+    {% for x in notif %}
+        <div style="padding:10px;border: blue solid 5px; margin: 5px;border-radius: 10px">
+            <h3> <a href="{% url 'app_apply' %}?idno={{ data.username }}">Opurtinity Code {{ x.op_code }} -- {{ x.Responsibilites }}</a></h3>
+        <ul>
+            <li> Qualification :{{ x.qualification }}</li>
+            <li>Job Description: {{ x.Description }}</li>
+            <li> Number of Oppenings :{{ x.positions }}</li>
+            <li> Last Date of Apply: {{ x.Lastdate_apply }}</li>
+        </ul>
+        </div>
+
+    {% endfor %}
+
+
+
+
+{% endblock %}
+{% block sidebar %}
+
+    <div style="border: 5px solid black; padding: 5px ; border-radius: 10px;margin-top: 20px">
+        <div class="list-group" style="text-align: center">
+            <a href="{% url 'app_home' %}" class="list-group-item list-group-item-action active">
+                Home
+            </a>
+
+            <a href="{% url 'current_rec' %}?" class="list-group-item list-group-item-action">Current recuirment</a>
+            <a href="{% url 'app_apply' %}?" class="list-group-item list-group-item-action">Apply</a>
+            <a href="{% url 'home' %}?name=nrd" class="list-group-item list-group-item-action">Logout</a>
+</div>
+
+    </div>
+
+
+{% endblock %}

@@ -1,7 +1,10 @@
 from django import forms
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
 
 from hradmin.models import Employee
+
+
+User = get_user_model()
 
 
 class EmployeeForm(forms.ModelForm):
@@ -28,3 +31,21 @@ class UserForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+class AdminLoginForm(forms.Form):
+    email = forms.EmailField(label='Email')
+    password = forms.CharField(widget=forms.PasswordInput)
+
+    def clean(self):
+        email = self.cleaned_data['email']
+        password = self.cleaned_data["password"]
+        user = authenticate(email=email, password=password)
+        if not user:
+            raise forms.ValidationError('Invalid Credentials')
+        if not user.is_superuser:
+            raise forms.ValidationError('Restricted to Admin only')
+        return super().clean()
+
+    def r_user(self):
+        return self.user
+
