@@ -22,5 +22,6 @@ urlpatterns = [
     path('', homeview, name='home'),
     path('logout/', usr_logout, name='logout'),
     path('hradmin/', include('hradmin.urls')),
+    path('manager/', include('manager.urls')),
 
 ]

@@ -2,17 +2,22 @@
  {% block menu %}
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" style="font-family: Century" href="{% url 'manager_home' %}">Home</a>
+  <a class="navbar-brand" style="font-family: Century" href="{% url 'manager:home' %}">Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <a class="navbar-brand"  style="font-family: Century" href="{% url 'manage_recu' %}">Recuirtment</a>
+  <a class="navbar-brand"  style="font-family: Century" href="#">View Profile</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <a class="navbar-brand" style="font-family: Century" href="{% url 'interv_sched' %}">Interview-Schedule</a>
+  <a class="navbar-brand" style="font-family: Century" href="#">Change Password</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <a class="navbar-brand" style="font-family: Century" href="#">Logout</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -27,12 +32,15 @@
              <a href="#" class="list-group-item list-group-item-action active">
                 Sub Menu
             </a>
-            <a href="#" class="list-group-item list-group-item-action ">
-                View Profile
+            <a href="{% url 'manager:department' %}" class="list-group-item list-group-item-action ">
+                Departments
             </a>
-            <a href="#" class="list-group-item list-group-item-action">Change Password</a>
+            <a href="#" class="list-group-item list-group-item-action ">
+                Recuirtment
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">Interview-Schedule</a>
 
-            <a href="{% url 'home' %}?name=nrd" class="list-group-item list-group-item-action">logout</a>
+
 </div>
 
     </div>

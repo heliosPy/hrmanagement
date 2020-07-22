@@ -32,6 +32,27 @@ class Employee(models.Model):
     address = models.CharField(max_length=255)
 
 
+
+    """for individual authentication based on the designation used on the custom user"""
+
+    @property
+    def is_manager(self):
+        if self.Designation=='Manager':
+            return True
+        return False
+
+    @property
+    def is_hrhead(self):
+        if self.Designation=='HRHead':
+            return True
+        return False
+
+    @property
+    def is_interviwer(self):
+        if self.Designation == 'Interviwer':
+            return True
+        return False
+
 # @receiver(post_save, sender=get_user_model())
 # def save_employe_profile(sender, instance, **kwargs):
 #     if instance.is_staff:

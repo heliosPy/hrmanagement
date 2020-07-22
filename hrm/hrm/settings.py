@@ -37,8 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #User apps
     'accounts.apps.AccountsConfig',
     'hradmin.apps.HradminConfig',
+    'manager.apps.ManagerConfig',
 
     #third party apps
     'crispy_forms',

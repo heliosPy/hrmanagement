@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout ,authenticate, get_user_model
 from django.urls import reverse
+from .decorators import hradmin_required
 
 
 
@@ -16,23 +17,27 @@ User = get_user_model()
 
 def admin_login(request):
     """for checking the credentials of the admin who is also a super super who adds the employess"""
+    if not request.user.is_anonymous:
+        if request.user.is_superuser:
+            # if a user is already loged in the they are redirected to the home page
+            return redirect('hradmin:home')
     if request.method == "POST":
+        # logout(request)#logout the user who is visiting form another app like manger/applicant
         form = AdminLoginForm(request.POST)
         if form.is_valid():
             email_ = form.cleaned_data["email"]
             user = User.objects.get(email__iexact=email_)
             login(request, user)
-            print('this is passed as it is logined ')
             return redirect('hradmin:home')
         return render(request, 'hradmin/login.html',{'loginform':form})
     form = AdminLoginForm()
     return render(request, 'hradmin/login.html',{'loginform':form})
 
-@login_required(login_url='/hradmin/login')
+@hradmin_required(login_url="/hradmin/login/")
 def hradminhome(request):
     return render(request, 'hradmin/home.html')
 
-@login_required(login_url='/hradmin/login/')
+@hradmin_required(login_url="/hradmin/login/")
 def add_employee(request):
     if request.method == "POST":
         cu = UserForm(request.POST)
@@ -54,19 +59,19 @@ def add_employee(request):
     context = {'user':cu, 'employee': em}
     return render(request, 'hradmin/add_emp.html', context)
 
-@login_required(login_url='/hradmin/login/')
+@hradmin_required(login_url="/hradmin/login/")
 def veiw_all_emp(request):
     qs = Employee.objects.all()
     return render(request, 'hradmin/view_emp.html', {'data': qs})
 
 
-@login_required(login_url='/hradmin/login')
+@hradmin_required(login_url="/hradmin/login/")
 def update_emp(request):
 
     qs =Employee.objects.all()
     return render(request, 'hradmin/update_emp.html',{'data':qs})
 
-@login_required(login_url='/hradmin/login')
+@hradmin_required(login_url="/hradmin/login/")
 def ind_update(request):
     id = request.GET.get('idno') or request.POST.get('idno')
     data = Employee.objects.get(user_id=id)
@@ -86,7 +91,7 @@ def ind_update(request):
                   {"employee": emp})
 
 
-@login_required(login_url='/hradmin/login/')
+@hradmin_required(login_url="/hradmin/login/")
 def del_employe(request):
     if request.method == "POST":
         dlist = request.POST.getlist('t1')

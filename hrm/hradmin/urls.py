@@ -5,7 +5,7 @@ from hradmin import views
 app_name = 'hradmin'
 
 urlpatterns = [
-    path('home/', views.hradminhome, name='home'),
+    path('', views.hradminhome, name='home'),
     path('login/', views.admin_login, name='login'),
     path('addemp/', views.add_employee, name='addemp'),
     path('allemp/', views.veiw_all_emp, name='allemp'),

@@ -1,0 +1,92 @@
+{%  extends 'manager/home.html' %}
+{%  load crispy_forms_tags %}
+{% block sidebar %}
+      <div style="border: 5px solid black; padding: 5px ; border-radius: 10px;margin-top: 20px">
+        <div class="list-group" style="text-align: center">
+             <a href="#" class="list-group-item list-group-item-action active">
+                Sub Menu
+            </a>
+            <a href="#" class="list-group-item list-group-item-action ">
+                 Update Department
+            </a>
+            <a href="#" class="list-group-item list-group-item-action ">
+                 Delete Department
+            </a>
+
+
+
+</div>
+
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-7">
+            <div class="row"><div class="col">Department ID</div><div class="col">Department</div></div>
+            {% for i in alldep %}
+            <div class="row"><div class="col">{{ i.dep_id }}</div><div class="col">{{ i.name }}</div></div>
+            {% endfor %}
+        </div>
+        <div class="col-5">
+            <form method="post">
+                {% csrf_token %}
+                {{ depform|crispy }}
+                <div class="row">
+                    <button class="bt-success" type="submit">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+{#{%  block body %}#}
+{#<div style="  padding: 8px; font-family: Century">#}
+{#    <div class="container-fluid">#}
+{#        <div class="row">#}
+{#            <div class="col-6" style="font-size: 35px; color: darkslategrey; text-align: center">Departmetn list}#}
+{#            </div>#}
+{#            <div class ="col-6" style="font-size: 35px; color: darkslategrey; text-align: center">Admin Login</div>#}
+{##}
+{#        </div>#}
+{#        <div class="row" style="font-size: 20px">#}
+{#            <div class="col-6" >#}
+{#                <div class="container-fluid" style="font-family: Century">#}
+{#<div class="row" style="border: 2px solid blue;text-align: center;font-size: 25px;background-color: blue;color: white">#}
+{#    <div class="col-4"style="border: 1px solid black">ID</div>#}
+{#    <div class="col-8"style="border: 1px solid black">Name</div>#}
+{##}
+{#</div>#}
+{#{% for x in alldep %}#}
+{#    <div class="row" >#}
+{#    <div class="col-1" style="border: 1px solid black;font-size: 16px">{{ x.dep_id }}</div>#}
+{#    <div class="col-2" style="border: 1px solid black;font-size: 16px">{{ x.name }}</div>#}
+{##}
+{##}
+{#</div>#}
+{#{% endfor %}#}
+{#</div>#}
+{#            </div>#}
+{#        <div class="col-6" style="padding: 20px ;border: 5px solid cornflowerblue;border-radius: 15px">#}
+{#             <div class="container">#}
+{#    <div class="row">#}
+{#         <div class="col align-self-center">#}
+{#      <form  method="post">#}
+{#          {% csrf_token %}#}
+{#  <div class="form-group">#}
+{#    {{ depform|crispy }}#}
+{#  </div>#}
+{##}
+{##}
+{#          <div style="text-align: center">#}
+{#  <button   type="submit" class="btn btn-primary" >Login</button></div>#}
+{#</form>#}
+{#    </div>#}
+{#    </div>#}
+{#    </div>#}
+{#        </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    </div>#}
+{#{% endblock %}#}
