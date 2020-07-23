@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 
 
 class DepartmentModel(models.Model):
@@ -10,10 +10,20 @@ class DepartmentModel(models.Model):
 
 
 class RecuirtmentModel(models.Model):
+    Experiences_choices = [
+        ('Fresher','Fresher'),
+        ('One Year', 'One Year'),
+        ('Two Years', "Two Years"),
+        ("Three Years +","Three Years +"),
+        ("Five Years +", "Five Years +"),
+        ("Ten Years +","Ten Years +" ),
+        ("Not Required", "Not Required")
+    ]
+
     op_code            = models.IntegerField(primary_key=True)
-    qualification      = models.CharField(max_length=15)
+    qualification      = models.CharField(max_length=255)
     regestration_start = models.DateField()
-    age_limit          = models.IntegerField()
+    experience         = models.CharField(max_length=15, choices=Experiences_choices, default='Fresher')
     lastdate_apply     = models.DateField()
     department         = models.ForeignKey(DepartmentModel,on_delete=models.CASCADE)
     no_positions       = models.IntegerField()
@@ -21,6 +31,7 @@ class RecuirtmentModel(models.Model):
     responsibilites    = models.CharField(max_length=200)
     contact            = models.IntegerField()
     email              = models.EmailField()
+    created_on =         models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return self.responsibilites
+        return self.description

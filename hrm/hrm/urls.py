@@ -23,5 +23,6 @@ urlpatterns = [
     path('logout/', usr_logout, name='logout'),
     path('hradmin/', include('hradmin.urls')),
     path('manager/', include('manager.urls')),
+    path('users/', include('applicant.urls')),
 
 ]

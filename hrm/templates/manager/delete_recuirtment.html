@@ -1,8 +1,19 @@
-{% extends "manager/manager_recu.html" %}
+{% extends "manager/recuirtment.html" %}
 {% block title %}
     <title>Recuirment Delete</title>
 {% endblock %}
 {% block body %}
+     <h1 style="font-size: 35px; border: blue 5px solid;padding: 10px; font-weight: bold;text-align: center">Delete Recuirtment Details</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-warning" role="alert" style="text-align: center">
+                    {{ message }}
+             </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if data %}
     <div class="container-fluid" style="font-family: Century">
 <div class="row" style="border: 2px solid blue;text-align: center;font-size: 25px;background-color: blue;color: white">
     <div class="col-2"style="border: 1px solid black">Rec Code</div>
@@ -11,14 +22,14 @@
     <div class="col-4"style="border: 1px solid black">Last Date to Apply</div>
 
 </div>
-<form action="{% url 'manage_recu' %}" method="post"> {% csrf_token %}
+<form  method="post"> {% csrf_token %}
 {% for x in data %}
     <div class="row" >
     <div class="col-1" style="border: 1px solid black;font-size: 20px"><input type="checkbox" name="t1" value="{{ x.op_code }}" ></div>
     <div class="col-1" style="border: 1px solid black;font-size: 20px">{{ x.op_code }} </div>
     <div class="col-3" style="border: 1px solid black;font-size: 20px">{{ x.qualification }}</div>
-    <div class="col-3" style="border: 1px solid black;font-size: 20px">{{ x.DepartmentId }}</div>
-    <div class="col-4" style="border: 1px solid black;font-size: 20px">{{ x.Lastdate_apply }}</div>
+    <div class="col-3" style="border: 1px solid black;font-size: 20px">{{ x.department }}</div>
+    <div class="col-4" style="border: 1px solid black;font-size: 20px">{{ x.lastdate_apply }}</div>
 
 
 </div>
@@ -27,8 +38,9 @@
 <br>
 
 <div class="row">
-    <div class="col-12" style="text-align: center"><button type="submit" name="bname" value="re_delete"><strong>Delete</strong></button> </div>
+    <div class="col-12" style="text-align: center"><button type="submit" ><strong>Delete</strong></button> </div>
 </div>
 </form>
 </div>
+    {% endif %}
 {% endblock %}

@@ -1,0 +1,104 @@
+{% extends "index.html" %}
+{% block body %}
+    <table align="center" >
+  <tr>
+      <th colspan="3" style="background-color: blue; color: honeydew; font-family: Century;text-align: center" ><h2>Applicant Regestration Form</h2></th></tr>
+       <form  method="post">
+           {% csrf_token %}
+
+
+
+           <tr>
+       <td width="150" style="position: fixed">
+           Name
+       </td>
+       <td>
+           {{applicant.name }}
+       </td>
+       <td width="500">
+           {{applicant.name.errors }}
+       </td>
+         </tr>
+   <tr>
+       <td width="150">
+           Date of Birth
+       </td>
+       <td>
+           {{applicant.dob }}
+       </td>
+       <td width="500">
+           {{applicant.dob.errors }}
+       </td>
+         </tr>
+   <tr>
+       <td>
+           {{ user.email.label }}
+       </td>
+       <td>
+           {{ user.email }}
+       </td>
+       <td>
+           {{ user.email.errors }}
+       </td>
+       <tr>
+       <td>
+           Gender
+       </td>
+       <td>
+           {{ applicant.gender }}
+       </td>
+       <td>
+
+       </td>
+   </tr>
+            <tr>
+       <td>
+           {{ applicant.mobile.label }}
+       </td>
+       <td>
+           {{ applicant.mobile }}
+       </td>
+       <td> {{ applicant.mobile.errors }}</td>
+
+           <tr>
+             <tr>
+       <td >Address:</td>
+       <td >{{ applicant.address }}</td>
+   </tr>
+
+   </tr>
+       <tr>
+       <td>
+           {{user.password.label }}
+       </td>
+       <td>
+           {{user.password}}
+       </td>
+       <td>
+           {{data.password.errors }}
+       </td>
+
+   </tr>
+            <tr>
+       <td>
+           {{data.password2.label }}
+       </td>
+       <td>
+           {{data.password2}}
+       </td>
+       <td>
+           {{data.password2.errors }}
+       </td>
+
+   </tr>
+
+
+
+
+               <td colspan="2" align="center"><button type="submit" >Regester</button> </td>
+               <td></td>
+           </tr>
+           </form>
+
+   </table>
+{% endblock %}

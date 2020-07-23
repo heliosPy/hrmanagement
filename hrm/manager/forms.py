@@ -33,3 +33,16 @@ class DepartmentForm(forms.ModelForm):
             raise forms.ValidationError('id should be with in range of 100, 200')
         return id
 
+class RecuirtmentForm(forms.ModelForm):
+    class Meta:
+        model =RecuirtmentModel
+        exclude = ("contact", "email","created_on")
+
+    def clean_op_code(self):
+        id = self.cleaned_data['op_code']
+        if id <= 1000:
+            raise forms.ValidationError("oppertunity code should be greater than 1000")
+        return id
+
+
+

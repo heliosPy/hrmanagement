@@ -1,18 +1,27 @@
 from django import forms
 from django.contrib.auth import get_user_model, authenticate
 
-from hradmin.models import Employee
+from .models import Applicant, ApplicationFormModel
 
 
-User = get_user_model()
+class ApplicantRegistrationForm(forms.ModelForm):
+    gen = (
+        ("Male", "Male"),
+        ("Female", "Female")
+    )
 
-
-class EmployeeForm(forms.ModelForm):
+    gender = forms.ChoiceField(choices=gen, widget=forms.RadioSelect)
     class Meta:
-        model = Employee
+        model = Applicant
         exclude = ('user',)
 
-class UserForm(forms.ModelForm):
+    def clean_mobile(self):
+        no = self.cleaned_data['mobile']
+        if len(str(no))!=10:
+            raise forms.ValidationError('Mobile Number should contain 10 digits')
+        return no
+
+class UserRegestrationForm(forms.ModelForm):
     password2 = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model = get_user_model()
@@ -32,7 +41,7 @@ class UserForm(forms.ModelForm):
             user.save()
         return user
 
-class AdminLoginForm(forms.Form):
+class UserLoginForm(forms.Form):
     email = forms.EmailField(label='Email')
     password = forms.CharField(widget=forms.PasswordInput)
 
@@ -42,7 +51,19 @@ class AdminLoginForm(forms.Form):
         user = authenticate(email=email, password=password)
         if not user:
             raise forms.ValidationError('Invalid Credentials')
-        if not user.is_superuser:
-            raise forms.ValidationError('Restricted to Admin only')
+        if not user.is_applicant:
+            raise forms.ValidationError('Restricted to Applicants only')
         return super().clean()
+
+class ApplicationForm(forms.ModelForm):
+    gen = (
+        ("Male", "Male"),
+        ("Female", "Female")
+    )
+
+    gender = forms.ChoiceField(choices=gen, widget=forms.RadioSelect)
+    class Meta:
+        model=ApplicationFormModel
+        exclude = ('applicant ',)
+
 

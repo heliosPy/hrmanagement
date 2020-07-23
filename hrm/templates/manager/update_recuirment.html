@@ -1,6 +1,6 @@
-{% extends "manager/manager_recu.html" %}
+{% extends "manager/recuirtment.html" %}
 {% block title %}
-    <title> New Recuirment</title>
+    <title>Modify Recuirment Details </title>
     <style>
     #r1{
 
@@ -24,12 +24,22 @@
     }
     </style>
 {% endblock %}
+
 {% block body %}
-    <div class="container-fluid">
-    <form action="{% url 'manage_recu' %}"  method="post">
+
+
+<h1 style="font-size: 35px; border: blue 5px solid;padding: 10px; font-weight: bold;text-align: center">Update Recuirtment Details</h1>
+    <form a method="post">
+    {% csrf_token %}
+    <br>
+
+
+
+    <div class="container-fluid"   style="margin: 5px;padding: 10px; padding-left: 60px">
+    <form   method="post">
         {% csrf_token %}
     <div class="row">
-        <div class="col-8" style="background-color: blue ;width: 50px; color: white; text-align: center; font-size: 30px; margin-bottom: 15px"> RECUIRMENT DETAIL REGESTRATION</div>
+        <div class="col-8" style="background-color: blue ;width: 50px; color: white; text-align: center; font-size: 30px; margin-bottom: 15px"> RECUIRMENT DETAIL UPDATE</div>
     </div>
     <div class="row">
         <div class=" col-3" id="r1">Oppertunity Code</div>
@@ -52,49 +62,45 @@
     <div class="row">
         <div class=" col-3" id="r1">Age Limit</div>
           <div class="col-1">:</div>
-        <div class="col-5" >{{ data.Age_limit }}</div>
-        <div class="col-3">{{ data.Age_limit.errors }}</div>
+        <div class="col-5" >{{ data.age_limit }}</div>
+        <div class="col-3">{{ data.age_limit.errors }}</div>
     </div>
     <div class="row">
         <div class=" col-3" id="r1">Last Date to Apply</div>  <div class="col-1">:</div>
-        <div class="col-5" >{{ data.Lastdate_apply }}</div>
-        <div class="col-3">{{ data.Lastdate_apply.errors }}</div>
+        <div class="col-5" >{{ data.lastdate_apply }}</div>
+        <div class="col-3">{{ data.lastdate_apply.errors }}</div>
     </div>
     <div class="row">
         <div class=" col-3" id="r1">Department ID</div>
           <div class="col-1">:</div>
-        <div class="col-5" >{{ data.DepartmentId }}</div>
-        <div class="col-3">{{ data.DepartmentId.errors }}</div>
+        <div class="col-5" >{{ data.department }}</div>
+        <div class="col-3">{{ data.department.errors }}</div>
     </div>
     <div class="row">
         <div class=" col-3" id="r1">No of Opennings</div>
           <div class="col-1">:</div>
-        <div class="col-5" >{{ data.positions}}</div>
-        <div class="col-3">{{ data.positions.errors }}</div>
+        <div class="col-5" >{{ data.no_positions}}</div>
+        <div class="col-3">{{ data.no_positions.errors }}</div>
     </div>
     <div class="row">
         <div class=" col-3" id="r1">Description</div>
           <div class="col-1">:</div>
-        <div class="col-5" >{{ data.Description }}</div>
-        <div class="col-3">{{ data.Description.errors }}</div>
+        <div class="col-5" >{{ data.description }}</div>
+        <div class="col-3">{{ data.description.errors }}</div>
     </div>
          <div class="row">
         <div class=" col-3" id="r1">Responsibilites</div>
                <div class="col-1">:</div>
-        <div class="col-5" >{{ data.Responsibilites }}</div>
-        <div class="col-3">{{ data.Responsibilites.errors }}</div>
+        <div class="col-5" >{{ data.responsibilites }}</div>
+        <div class="col-3">{{ data.responsibilites.errors }}</div>
     </div>
-         <div class="row">
-        <div class=" col-3" id="r1">Contact</div>  <div class="col-1">:</div>
-        <div class="col-5">{{ data.contact }}</div>
-        <div class="col-3">{{ data.contact.errors }}</div>
-    </div>
-        <div class="row">
+
+    <div class="row">
             <div class="col-2"></div>
-            <div class="col-4"><button type="submit" name="bname" value="recsave" style="margin-top: 30px; text-align: center; background-color: gainsboro; color: blue; font-size: 28px">Save Details</button> </div>
+            <div class="col-4"><button type="submit" name="bname" value="rupdate" style="margin-top: 30px; text-align: center; background-color: gainsboro; color: blue; font-size: 28px">Update Details</button> </div>
             <div class="col-6"></div>
         </div>
         </form>
     </div>
 
-{% endblock %}
+{% endblock body %}

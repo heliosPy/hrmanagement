@@ -1,0 +1,46 @@
+{% extends "manager/recuirtment.html" %}
+{% block title %}
+    <title>Modify Recuirment</title>
+{% endblock %}
+{% block body %}
+    <h1 style="font-size: 35px; border: blue 5px solid;padding: 10px; font-weight: bold;text-align: center">Update Recuirtment Details</h1>
+
+     {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-warning" role="alert" style="font-size: 25px; text-align: center">
+                    {{ message }}
+             </div>
+            <div class="alert alert-success" role="alert" style="font-size: 20px; text-align: center">
+                 <a href="{% url 'manager:addrec' %}">click Here</a> to add new recuirtment
+          </div>
+        {% endfor %}
+    {% endif %}
+    {% if data %}
+    <div class="container-fluid" style="font-family: Century">
+<div class="row" style="border: 2px solid blue;text-align: center;font-size: 25px;background-color: blue;color: white">
+    <div class="col-2"style="border: 1px solid black">Rec Code</div>
+    <div class="col-3"style="border: 1px solid black">Qualification</div>
+    <div class="col-3"style="border: 1px solid black">Department</div>
+    <div class="col-4"style="border: 1px solid black">Last Date to Apply</div>
+
+</div>
+<form  method="post"> {% csrf_token %}
+{% for x in data %}
+    <div class="row" >
+
+        <div class="col-2" style="border: 1px solid black;font-size: 20px"><a href="{% url 'manager:updaterec' %}?id={{ x.op_code }}">{{ x.op_code }} </a></div>
+    <div class="col-3" style="border: 1px solid black;font-size: 20px">{{ x.qualification }}</div>
+    <div class="col-3" style="border: 1px solid black;font-size: 20px">{{ x.department }}</div>
+    <div class="col-4" style="border: 1px solid black;font-size: 20px">{{ x.lastdate_apply }}</div>
+
+
+</div>
+{% endfor %}
+<br>
+<br>
+
+
+</form>
+</div>
+    {% endif %}
+{% endblock %}

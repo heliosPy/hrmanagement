@@ -7,7 +7,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <a class="navbar-brand"  style="font-family: Century" href="#">View Profile</a>
+  <a class="navbar-brand"  style="font-family: Century" href="{% url 'manager:profile' %}">View Profile</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -17,7 +17,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-    <a class="navbar-brand" style="font-family: Century" href="#">Logout</a>
+    <a class="navbar-brand" style="font-family: Century" href="{% url 'manager:logout' %}">Logout</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -35,7 +35,7 @@
             <a href="{% url 'manager:department' %}" class="list-group-item list-group-item-action ">
                 Departments
             </a>
-            <a href="#" class="list-group-item list-group-item-action ">
+            <a href="{%  url 'manager:homerec' %}" class="list-group-item list-group-item-action ">
                 Recuirtment
             </a>
             <a href="#" class="list-group-item list-group-item-action">Interview-Schedule</a>

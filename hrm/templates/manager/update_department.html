@@ -1,0 +1,37 @@
+{% extends 'manager/department.html' %}
+
+{% block body %}
+    <div style="  padding: 8px; font-family: Century">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col" style="font-size: 35px; color: darkslategrey; text-align: center">Department list
+            </div>
+
+        </div>
+        <div class="row" style="font-size: 20px">
+            <div class="col" >
+                <div class="container-fluid" style="font-family: Century">
+<div class="row" style="border: 2px solid blue;text-align: center;font-size: 25px;background-color: blue;color: white">
+    <div class="col-2"style="border: 1px solid black">ID</div>
+    <div class="col-4"style="border: 1px solid black">Name</div>
+    <div class="col-3"style="border: 1px solid black">Update</div>
+    <div class="col-3"style="border: 1px solid black">Delete</div>
+
+</div>
+{% for x in alldep %}
+    <div class="row" >
+    <div class="col-2" style="border: 1px solid black;font-size: 16px">{{ x.dep_id }}</div>
+    <div class="col-4" style="border: 1px solid black;font-size: 16px">{{ x.name }}</div>
+    <div class="col-3" style="border: 1px solid black;font-size: 16px">
+        <a href="{% url 'manager:updatedep' %}?id={{ x.dep_id }}"><button type="submit" class="btn btn-info" >Update</button></a>
+    </div>
+    <div class="col-3" style="border: 1px solid black;font-size: 16px">
+        <a href="{% url 'manager:delete_department' %}?id={{ x.dep_id }}"><button type="submit" class="btn btn-danger" >Delete</button></a>
+    </div>
+
+
+</div>
+{% endfor %}
+</div>
+            </div>
+{% endblock %}

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'hradmin.apps.HradminConfig',
     'manager.apps.ManagerConfig',
+    'applicant.apps.ApplicantConfig',
 
     #third party apps
     'crispy_forms',
