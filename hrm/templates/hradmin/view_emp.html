@@ -1,5 +1,8 @@
 {% extends "hradmin/home.html" %}
 {% block body %}
+
+        <h2 align="center">Complete List of Employees</h2>
+    <br>
 <div class="container-fluid" style="font-family: Century">
 <div class="row" style="border: 2px solid blue;text-align: center;font-size: 25px;background-color: blue;color: white">
     <div class="col-1"style="border: 1px solid black">ID</div>
@@ -22,4 +25,7 @@
 </div>
 {% endfor %}
 </div>
+    <br>
+    
+    <p> Note:- Admin in not included in the list</p>
 {% endblock %}

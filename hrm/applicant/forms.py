@@ -56,14 +56,7 @@ class UserLoginForm(forms.Form):
         return super().clean()
 
 class ApplicationForm(forms.ModelForm):
-    gen = (
-        ("Male", "Male"),
-        ("Female", "Female")
-    )
-
-    gender = forms.ChoiceField(choices=gen, widget=forms.RadioSelect)
     class Meta:
         model=ApplicationFormModel
-        exclude = ('applicant ',)
-
+        fields = ("email",'resume')
 

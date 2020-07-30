@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'hradmin.apps.HradminConfig',
     'manager.apps.ManagerConfig',
     'applicant.apps.ApplicantConfig',
+    'interviewer.apps.InterviewerConfig',
+    'hrhead.apps.HrheadConfig',
 
     #third party apps
     'crispy_forms',
@@ -130,3 +132,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+MEDIA_URL = "/media/"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

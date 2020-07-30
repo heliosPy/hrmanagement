@@ -2,28 +2,61 @@
 {% extends "index.html" %}
 {% block title %}
 
-{% endblock %}
+{% endblock title %}
 {% block menu %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12" style="background-color: black; height: 30px"></div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" style="font-family: Century" href="{% url 'hradmin:home' %}">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <a class="navbar-brand"  style="font-family: Century" href="#">View Profile</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <a class="navbar-brand" style="font-family: Century" href="#">Change Password</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+     <a class=" navbar-brand navbar-right" style="font-family: Century" href="{% url 'logout' %}">Logout</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+
+        </nav>
+
+
+
+    {% endblock menu %}
+
+    {% block sidebar %}
+      <div style="border: 5px solid black; padding: 5px ; border-radius: 10px;margin-top: 20px">
+        <div class="list-group" style="text-align: center">
+             <a href="#" class="list-group-item list-group-item-action active">
+                Menu
+            </a>
+            <a href="{% url 'hradmin:addemp' %}" class="list-group-item list-group-item-action ">
+                Add Employee
+            </a>
+            <a href="{%  url 'hradmin:allemp' %}" class="list-group-item list-group-item-action ">
+                View Employee
+            </a>
+            <a href="{% url 'hradmin:update' %}" class="list-group-item list-group-item-action">Update Employee</a>
+            <a href="{% url 'hradmin:emp_delete' %}" class="list-group-item list-group-item-action">Delete Employee</a>
+
+
+
+</div>
+
     </div>
-</div>
-{% endblock %}
-{% block sidebar %}
-<div class="list-group">
-  <a href="{% url "hradmin:home" %}" class="list-group-item list-group-item-action">Admin Home</a>
+{% endblock sidebar %}
 
 
-  <a href="{% url 'hradmin:addemp' %}" class="list-group-item list-group-item-action list-group-item-primary">Add Employee</a>
-  <a href="{% url 'hradmin:allemp' %}" class="list-group-item list-group-item-action list-group-item-secondary">View Employee</a>
-  <a href="{% url 'hradmin:update' %}" class="list-group-item list-group-item-action list-group-item-success">Update Employee</a>
-  <a href="{% url 'hradmin:emp_delete' %}" class="list-group-item list-group-item-action list-group-item-danger">Delete Employee</a>
-  <a href="{% url 'logout' %}" class="list-group-item list-group-item-action list-group-item-warning">Logout</a>
 
-</div>
-
-{% endblock %}
 {% block body %}
 <h1>Welcome to the ADMIN</h1>
 

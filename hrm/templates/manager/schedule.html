@@ -1,0 +1,29 @@
+{% extends 'manager/home.html' %}
+
+
+{%  block body %}
+    <h2>No of applications recieved today {{ appli }}</h2>
+    <br>
+    <h2>No of Requirtment Regestration Completed are {{ data }}</h2>
+{% endblock body %}
+
+
+{% block sidebar %}
+      <div style="border: 5px solid black; padding: 5px ; border-radius: 10px;margin-top: 20px">
+        <div class="list-group" style="text-align: center">
+             <a href="#" class="list-group-item list-group-item-action active">
+                Schedule
+            </a>
+            <a href="{% url 'manager:sc_rec_list' %}" class="list-group-item list-group-item-action ">
+                Recuirtment
+            </a>
+            <a href="{% url 'manager:schedule_list' %}" class="list-group-item list-group-item-action ">
+                Scheduled list
+            </a>
+
+
+
+</div>
+
+    </div>
+{% endblock sidebar %}

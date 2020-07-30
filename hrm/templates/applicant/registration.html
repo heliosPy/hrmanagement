@@ -3,13 +3,13 @@
     <table align="center" >
   <tr>
       <th colspan="3" style="background-color: blue; color: honeydew; font-family: Century;text-align: center" ><h2>Applicant Regestration Form</h2></th></tr>
-       <form  method="post">
+       <form  method="post" ">
            {% csrf_token %}
 
 
 
            <tr>
-       <td width="150" style="position: fixed">
+       <td width="150" >
            Name
        </td>
        <td>
@@ -51,6 +51,28 @@
 
        </td>
    </tr>
+        <tr>
+       <td width="150" >
+           {{ applicant.qualification.label }}
+       </td>
+       <td>
+           {{applicant.qualification }}
+       </td>
+       <td width="500">
+           {{applicant.qualification.errors }}
+       </td>
+         </tr>
+        <tr>
+       <td width="150" >
+           {{ applicant.percentage.label }}
+       </td>
+       <td>
+           {{applicant.percentage }}
+       </td>
+       <td width="500">
+           {{applicant.percentage.errors }}
+       </td>
+         </tr>
             <tr>
        <td>
            {{ applicant.mobile.label }}
@@ -75,19 +97,19 @@
            {{user.password}}
        </td>
        <td>
-           {{data.password.errors }}
+           {{user.password.errors }}
        </td>
 
    </tr>
             <tr>
        <td>
-           {{data.password2.label }}
+           {{user.password2.label }}
        </td>
        <td>
-           {{data.password2}}
+           {{user.password2}}
        </td>
        <td>
-           {{data.password2.errors }}
+           {{user.password2.errors }}
        </td>
 
    </tr>

@@ -1,0 +1,24 @@
+{% extends 'applicant/home.html' %}
+{% block body %}
+     <div style="padding:10px;border: blue solid 5px; margin: 5px;border-radius: 10px">
+            <h3> Opurtinity Code {{ data.op_code }} -- {{ data.responsibilites }}</h3>
+        <ul style="font-size: 25px;font-weight: bold">
+            <li> Qualification &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px;">{{ data.qualification }}</span></li>
+             <li>Experience &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px;">{{ data.experience }}</li>
+            <li>Job Description &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px;">{{ data.description }}</li>
+            <li>Department &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px;">{{ data.department }}</li>
+            <li> Number of Oppenings &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px;">{{ data.no_positions }}</li>
+            <li>Registration Starts On&nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px;">{{ data.registration_start }}</li>
+            <li> Last Date of Apply &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px;">{{ data.lastdate_apply }}</li>            <li>Contact Number &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px;">{{ data.contact }}</li>
+            <li>Email Us &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px;">{{ data.email }}</li>
+
+        </ul>
+         <form action="{% url 'users:apply' id=data.op_code %}">
+
+     <button type="submit" class="btn btn-secondary btn-lg btn-block">Apply for the job</button>
+             </form>
+
+        </div>
+
+
+{% endblock body %}

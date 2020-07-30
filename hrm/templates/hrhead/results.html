@@ -1,0 +1,90 @@
+{%  extends 'hrhead/home.html' %}
+
+{% block body %}
+
+        <h3 style="text-align:center;width: 100%; background-color: blue;color: white ;font-weight: bold">Opurtinity Code {{ rec.op_code }} -- {{ rec.responsibilites }}</h3>
+
+
+<br>
+    <h3 align="center">The List of Shortlisted Canditates</h3>
+
+
+    <div class="container-fluid" style="font-family: Century">
+<div class="row" style="border: 2px solid blue;text-align: center;font-size: 25px;background-color: blue;color: white">
+    <div class="col-1"style="border: 1px solid black">ID</div>
+    <div class="col-2"style="border: 1px solid black">Name</div>
+    <div class="col-2"style="border: 1px solid black">Qualification</div>
+    <div class="col-2"style="border: 1px solid black">Gender</div>
+    <div class="col-2"style="border: 1px solid black">contact</div>
+    <div class="col-3"style="border: 1px solid black">Email</div>
+
+</div>
+{% for x in shortlisted %}
+    <div class="row" >
+        <div class="col-1" style="border: 1px solid black;font-size: 16px">{{ x.applicant_id }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 16px">{{ x.applicant_id.applicant.name }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 16px">{{ x.applicant_id.applicant.qualification }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 16px">{{ x.applicant_id.applicant.gender }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 12px">{{ x.applicant_id.applicant.mobile }}</div>
+    <div class="col-3" style="border: 1px solid black;font-size: 16px">{{ x.applicant_id.email }}</div>
+
+</div>
+{% endfor %}
+
+</div>
+
+<br>
+<br>
+        <h3 align="center">The List of Selected Canditates</h3>
+
+
+    <div class="container-fluid" style="font-family: Century">
+<div class="row" style="border: 2px solid blue;text-align: center;font-size: 25px;background-color: blue;color: white">
+    <div class="col-1"style="border: 1px solid black">ID</div>
+    <div class="col-2"style="border: 1px solid black">Name</div>
+    <div class="col-2"style="border: 1px solid black">Qualification</div>
+    <div class="col-2"style="border: 1px solid black">Gender</div>
+    <div class="col-2"style="border: 1px solid black">Email</div>
+    <div class="col-3"style="border: 1px solid black">Result</div>
+
+</div>
+{% for x in selected %}
+    <div class="row" >
+        <div class="col-1" style="border: 1px solid black;font-size: 16px">{{ x.applicant_id }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 16px">{{ x.applicant_id.applicant.name }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 16px">{{ x.applicant_id.applicant.qualification }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 16px">{{ x.applicant_id.applicant.gender }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 12px">{{ x.applicant_id.mail }}</div>
+    <div class="col-3" style="border: 1px solid black;font-size: 16px">{{ x.result }}</div>
+
+</div>
+{% endfor %}
+
+</div>
+    <br>
+    <br>
+        <h3 align="center">The List of Rejected Canditates</h3>
+
+    <div class="container-fluid" style="font-family: Century">
+<div class="row" style="border: 2px solid blue;text-align: center;font-size: 25px;background-color: blue;color: white">
+    <div class="col-1"style="border: 1px solid black">ID</div>
+    <div class="col-2"style="border: 1px solid black">Name</div>
+    <div class="col-2"style="border: 1px solid black">Qualification</div>
+    <div class="col-2"style="border: 1px solid black">Gender</div>
+    <div class="col-2"style="border: 1px solid black">Email</div>
+    <div class="col-3"style="border: 1px solid black">Result</div>
+
+</div>
+{% for x in rejected %}
+    <div class="row" >
+        <div class="col-1" style="border: 1px solid black;font-size: 16px">{{ x.applicant_id }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 16px">{{ x.applicant_id.applicant.name }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 16px">{{ x.applicant_id.applicant.qualification }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 16px">{{ x.applicant_id.applicant.gender }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 12px">{{ x.applicant_id.mail }}</div>
+    <div class="col-3" style="border: 1px solid black;font-size: 16px">{{ x.result }}</div>
+
+</div>
+{% endfor %}</div>
+
+{% endblock body %}

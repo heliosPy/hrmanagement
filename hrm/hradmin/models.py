@@ -31,6 +31,10 @@ class Employee(models.Model):
     contact_no = models.IntegerField(unique=True, validators=[validate_contactno])
     address = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name + ' : ' + self.Designation
+
+
 
 
     """for individual authentication based on the designation used on the custom user"""

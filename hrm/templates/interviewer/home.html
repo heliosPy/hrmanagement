@@ -1,0 +1,66 @@
+{% extends "index.html" %}
+ {% block menu %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" style="font-family: Century" href="{% url 'interviewer:home' %}">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <a class="navbar-brand"  style="font-family: Century" href="{% url 'interviewer:profile' %}">View Profile</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <a class="navbar-brand" style="font-family: Century" href="#">Change Password</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <a class="navbar-brand" style="font-family: Century" href="{% url 'interviewer:logout' %}">Logout</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+        </nav>
+
+
+
+    {% endblock %}
+{% block sidebar %}
+      <div style="border: 5px solid black; padding: 5px ; border-radius: 10px;margin-top: 20px">
+        <div class="list-group" style="text-align: center">
+             <a href="#" class="list-group-item list-group-item-action active">
+                Sub Menu
+            </a>
+            <a href="#" class="list-group-item list-group-item-action ">
+                Interview Schedule
+            </a>
+            <a href="{% url 'interviewer:today_list' %}" class="list-group-item list-group-item-action ">
+                Interview List
+            </a>
+
+
+
+</div>
+
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div style="height: 100%">
+    <h2 style="color: blue"> Welcome, </h2> <spam style="font-weight: bold; text-transform: capitalize"><h1>{{ user.employee_profile.name }}
+</h1></spam>
+    <br>
+        <h4> Today Interviews are {{ count }}.</h4>
+
+
+
+
+
+
+    </div>
+
+
+
+
+{% endblock body %}

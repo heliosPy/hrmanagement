@@ -1,0 +1,34 @@
+{% extends 'applicant/home.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+     <div style="padding:10px;border: blue solid 5px; margin: 5px;border-radius: 10px">
+            <h3 style="font-weight: bold"> Opurtinity Code {{ data1.op_code }} -- {{ data1.responsibilites }}</h3>
+        <ul style="font-size: 25px;font-weight: bold">
+            <li> Qualification &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px;">{{ data1.qualification }}</span></li>
+             <li>Experience &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px;">{{ data1.experience }}</li>
+            <li>Job Description &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px;">{{ data1.description }}</li>
+            <li>Department &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px;">{{ data1.department }}</li>
+
+        </ul>
+
+             <div >
+             <div class="row" >
+                 <div class="col-4"></div><div class="col-4" style="padding:25px;border: red solid 5px; margin: 25px;border-radius: 10px">
+
+                 {% if message %}
+                     <h4>{{ message }}</h4>
+                 {% else %}
+                     <form method="post" enctype="multipart/form-data">
+             {% csrf_token %}
+                 {{ data|crispy }} <br><br>
+                 <div style="text-align: center">
+                     <button  type="submit" class="btn btn-success btn-lg btn-block ">Apply </button>
+                 </div>
+                     </form>
+                 {% endif %}
+</div><div class="col-4"></div>
+             </div>
+
+</div>
+
+{% endblock body %}

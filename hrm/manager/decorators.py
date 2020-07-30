@@ -9,19 +9,24 @@ from django.contrib.auth import REDIRECT_FIELD_NAME
 
 
 
-def check_user(u):
+def check_manager(u):
     """as the hradmin is a super user it doest have a employee profile,
     if the hradmin user tryin gto access the manager app it show DoesNotExist Error"""
-    try:
-        return(u.employee_profile.is_manager)
-    except:
+    if u.is_authenticated:
+        try:
+            return u.employee_profile.is_manager
+        except:
+            return False
+    else:
         return False
+
+
 
 
 def manager_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=None):
     
     actual_decorator = user_passes_test(
-        lambda u: check_user(u),
+        lambda u: check_manager(u),
         login_url=login_url,
         redirect_field_name=redirect_field_name
     )

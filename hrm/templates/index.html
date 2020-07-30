@@ -39,10 +39,10 @@
         <a class="nav-link" href="{% url 'users:home' %}">APPLICANT<span class="sr-only">(current)</span></a>
       </li>
          <li class="nav-item active">
-        <a class="nav-link" href="#">INTERVIEWER <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{% url 'interviewer:home' %}">INTERVIEWER <span class="sr-only">(current)</span></a>
       </li>
          <li class="nav-item active">
-        <a class="nav-link" href="#">HRHEAD<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{% url 'hrhead:home' %}">HRHEAD<span class="sr-only">(current)</span></a>
       </li>
 
 
@@ -83,7 +83,7 @@
         </div>
 
         <div class="col-10" style=" height: max-content">
-        <div style="margin: 20px; border: 15px solid black; padding: 65px; padding-bottom: 25px; border-radius: 20px">
+        <div style="margin: 20px; border: 15px solid black; padding: 65px; padding-bottom: 25px; border-radius: 20px; min-height: 500px">
 
           {% block body %} this is the body content{% endblock %}
         </div>

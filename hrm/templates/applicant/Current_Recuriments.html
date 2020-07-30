@@ -1,18 +1,18 @@
-{% extends "applicant/applicant_home.html" %}
+{% extends "applicant/home.html" %}
 {% block body %}
      <h3 style="width: 25%; background-color: blue;color: white">Current Notifications</h3>
 
     {% for x in notif %}
+
         <div style="padding:10px;border: blue solid 5px; margin: 5px;border-radius: 10px">
-            <h3> Opurtinity Code {{ x.op_code }} -- {{ x.Responsibilites }}</h3>
+            <h3> <a href="{% url 'users:detail' id=x.op_code %}">Opurtinity Code {{ x.op_code }} -- {{ x.responsibilites }}</a></h3>
         <ul>
             <li> Qualification :{{ x.qualification }}</li>
-            <li>Job Description: {{ x.Description }}</li>
-            <li> Number of Oppenings :{{ x.positions }}</li>
-            <li> Last Date of Apply: {{ x.Lastdate_apply }}</li>
+            <li>Job Description: {{ x.description }}</li>
+            <li> Number of Oppenings :{{ x.no_positions }}</li>
+            <li> Last Date of Apply: {{ x.lastdate_apply }}</li>
         </ul>
         </div>
 
     {% endfor %}
-
-{% endblock %}
+{% endblock body %}

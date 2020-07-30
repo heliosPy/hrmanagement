@@ -1,0 +1,89 @@
+{% extends "index.html" %}
+ {% block menu %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" style="font-family: Century" href="{% url 'hrhead:home' %}">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <a class="navbar-brand"  style="font-family: Century" href="{% url 'hrhead:profile' %}">View Profile</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <a class="navbar-brand" style="font-family: Century" href="#">Change Password</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <a class="navbar-brand" style="font-family: Century" href="{% url 'hrhead:logout' %}">Logout</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+        </nav>
+
+
+
+    {% endblock %}
+{% block sidebar %}
+      <div style="border: 5px solid black; padding: 5px ; border-radius: 10px;margin-top: 20px">
+        <div class="list-group" style="text-align: center">
+             <a href="#" class="list-group-item list-group-item-action active">
+                Menu
+            </a>
+            <a href="{% url 'hrhead:recuirtment' %}" class="list-group-item list-group-item-action ">
+                Recuirtments
+            </a>
+
+
+
+</div>
+
+    </div>
+{% endblock sidebar %}
+
+{% block body %}
+
+
+    <div style="height: 100%">
+    <h2 style="color: blue"> Welcome, &nbsp <spam style="font-weight: bold; text-transform: capitalize">{{ user.employee_profile.name }}
+</spam></h2>
+    <br>
+    <br>
+    <h3 align="center">The List of Selected Canditates in this Month</h3>
+
+
+    <div class="container-fluid" style="font-family: Century">
+<div class="row" style="border: 2px solid blue;text-align: center;font-size: 20px;background-color: blue;color: white">
+    <div class="col-1"style="border: 1px solid black">Post Id</div>
+    <div class="col-2"style="border: 1px solid black">Name</div>
+    <div class="col-2"style="border: 1px solid black">Qualification</div>
+    <div class="col-2"style="border: 1px solid black">Interviewed By</div>
+    <div class="col-2"style="border: 1px solid black">contact</div>
+    <div class="col-3"style="border: 1px solid black">Email</div>
+
+</div>
+{% for x in selected %}
+    <div class="row" >
+        <div class="col-1" style="border: 1px solid black;font-size: 18px">{{ x.post_id}}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 18px">{{ x.applicant_id.applicant.name }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 18px">{{ x.applicant_id.applicant.qualification }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 18px">{{ x.interviewer_id.name }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 16px">{{ x.applicant_id.applicant.mobile }}</div>
+    <div class="col-3" style="border: 1px solid black;font-size: 16px">{{ x.applicant_id.email }}</div>
+
+</div>
+{% endfor %}
+    <br>
+    <br>
+    <p> *For individual results based on the Recuirtment please use the menu </p>
+
+
+
+
+
+
+</div>
+
+{% endblock %}

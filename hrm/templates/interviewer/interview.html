@@ -1,0 +1,51 @@
+{% extends 'interviewer/home.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+    <div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <h5 style="width: 80%; background-color: blue;color: white;text-align: center;">Applicant Details</h5>
+            <ul style="font-size: 20px; color: blue">
+            <li> Name&nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px;color: black">{{ data.applicant_id.applicant.name|title }}</span></li>
+             <li>Qualification &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px; color: black;">{{ data.applicant_id.applicant.qualification|upper }}</li>
+            <li>email &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px ;color: black;"> {{ data.applicant_id.email }}</li>
+
+            <li> mobile &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px;color: black;">{{ data.applicant_id.applicant.mobile }}</li>
+
+        </ul>
+
+        </div>
+
+        <div class="col-6">
+            <h5 style="width: 80%; background-color: blue;color: white ; text-align: center;">Recuirtment  Details</h5>
+             <ul style="font-size: 20px;font-weight: bold">
+            <li> Qualification &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 15px;">{{ data.post.qualification }}</span></li>
+                 <li>Experience &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 15px;">{{ data.post.experience }}</span></li>
+                 <li>Job Description &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 15px;">{{ data.post.description }}</span></li>
+
+                 <li> Number of Oppenings &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px;">{{ data.post.no_positions }}</span></li>
+
+        </ul>
+        </div>
+    </div>
+        <br>
+
+        <div class="row justify-content-center">
+            <div class="col-3 align-self-center" style="text-align: center">
+            <h5 style="width: 100%; background-color: blue;color: white;text-align: center;">Interview Schedule</h5>
+                {% if message %}
+                    <h6 style="background-color: red; color:white;">{{ message }}</h6>
+                {% else %}
+                    <form method="post">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <br>
+
+  <button   type="submit" class="btn btn-primary" >Sudmit</button>
+      </form>
+                {% endif %}
+
+    </div>
+        </div>
+
+{% endblock body %}

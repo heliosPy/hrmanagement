@@ -1,0 +1,30 @@
+{%  extends 'manager/schedule.html' %}
+
+{% block body %}
+
+        <h3 style="width: 100%; background-color: blue;color: white">Opurtinity Code {{ rec.op_code }} -- {{ rec.responsibilites }}</h3>
+
+    <div class="container-fluid" style="font-family: Century">
+<div class="row" style="border: 2px solid blue;text-align: center;font-size: 25px;background-color: blue;color: white">
+    <div class="col-1"style="border: 1px solid black">ID</div>
+    <div class="col-2"style="border: 1px solid black">Name</div>
+    <div class="col-2"style="border: 1px solid black">Qualification</div>
+    <div class="col-2"style="border: 1px solid black">Gender</div>
+    <div class="col-2"style="border: 1px solid black">Interviewer</div>
+    <div class="col-3"style="border: 1px solid black">Schedule Date</div>
+
+</div>
+{% for x in appl %}
+    <div class="row" >
+        <div class="col-1" style="border: 1px solid black;font-size: 16px"><a href="{% url 'manager:app_sched' id=x.id op=rec.op_code%}">{{ x.id }}</a></div>
+    <div class="col-2" style="border: 1px solid black;font-size: 16px">{{ x.applicant.name }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 16px">{{ x.applicant.qualification }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 16px">{{ x.applicant.gender }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 12px">{{ x.interview.interviewer_id.name }}</div>
+    <div class="col-3" style="border: 1px solid black;font-size: 16px">{{x.interview.schedule_date}}</div>
+
+</div>
+{% endfor %}
+</div>
+
+{% endblock body %}

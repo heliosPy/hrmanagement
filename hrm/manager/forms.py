@@ -6,6 +6,15 @@ from .models import DepartmentModel, RecuirtmentModel
 
 User = get_user_model()
 
+def check_not_manager(user):
+    try:
+        if user.employee_profile.is_manager:
+            return False
+        else:
+            return True
+    except:
+        return True
+
 class ManagerLoginForm(forms.Form):
     """To authenticate weather the user is is_staff  and  only the manger can login"""
     email = forms.EmailField(label='Email')
@@ -17,7 +26,7 @@ class ManagerLoginForm(forms.Form):
         user = authenticate(email=email, password=password)
         if not user:
             raise forms.ValidationError('Invalid Credentials')
-        if not user.is_staff and user.employee_profile.Designation!='Manager':
+        if not user.is_staff or check_not_manager(user):
             raise forms.ValidationError('Restricted to Manager only')
         return super().clean()
 
@@ -35,7 +44,7 @@ class DepartmentForm(forms.ModelForm):
 
 class RecuirtmentForm(forms.ModelForm):
     class Meta:
-        model =RecuirtmentModel
+        model = RecuirtmentModel
         exclude = ("contact", "email","created_on")
 
     def clean_op_code(self):
@@ -46,3 +55,9 @@ class RecuirtmentForm(forms.ModelForm):
 
 
 
+from interviewer.models import  InterviewSchedule
+
+class ScheduleForm(forms.ModelForm):
+    class Meta:
+        model = InterviewSchedule
+        exclude = ('post','applicant_id','interview_timestamp', 'result')

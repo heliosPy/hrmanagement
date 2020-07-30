@@ -1,0 +1,45 @@
+{% extends 'manager/schedule.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+    <div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <h5 style="width: 80%; background-color: blue;color: white;text-align: center;">Applicant Details</h5>
+            <ul style="font-size: 20px; color: blue">
+            <li> Name&nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px;color: black">{{ applicant.applicant.name|title }}</span></li>
+             <li>Qualification &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px; color: black;">{{ applicant.applicant.qualification|upper }}</li>
+            <li>email &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px ;color: black;"> {{ applicant.email }}</li>
+
+            <li> mobile &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px;color: black;">{{ applicant.applicant.mobile }}</li>
+
+        </ul>
+
+        </div>
+        <div class="col-4 align-self-center">
+            <h5 style="width: 80%; background-color: blue;color: white;text-align: center;">Interview Schedule</h5>
+      <form method="post">
+          {% csrf_token %}
+          {{ data|crispy }}
+          <br>
+
+  <button   type="submit" class="btn btn-primary" >Schedule Interview</button>
+
+
+
+
+      </form>
+    </div>
+        <div class="col-4">
+            <h5 style="width: 80%; background-color: blue;color: white ; text-align: center;">Recuirtment  Details</h5>
+             <ul style="font-size: 20px;font-weight: bold">
+            <li> Qualification &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 15px;">{{ recuirtment.qualification }}</span></li>
+             <li>Experience &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 15px;">{{ recuirtment.experience }}</li>
+            <li>Job Description &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 15px;">{{ recuirtment.description }}</li>
+
+            <li> Number of Oppenings &nbsp;:&nbsp;<span style="font-weight: normal;font-size: 20px;">{{ recuirtment.no_positions }}</li>
+
+        </ul>
+        </div>
+    </div>
+    </div>
+{% endblock body %}

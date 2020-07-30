@@ -1,16 +1,67 @@
 {% extends "index.html" %}
 {% block menu %}
-<h1> Ure in the Apllicant Home</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" style="font-family: Century" href="{% url 'users:home' %}">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <a class="navbar-brand"  style="font-family: Century" href="#">View Profile</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <a class="navbar-brand" style="font-family: Century" href="#">Change Password</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <a class="navbar-brand" style="font-family: Century" href="{% url 'users:logout' %}">Logout</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+        </nav>
+
 {% endblock %}
 {% block body %}
 
-    {% if user.is_authenticated %}
+
     <div style="height: 100%">
-    <h2 style="color: blue"> Welcome, </h2> <spam style="font-weight: bold; text-transform: capitalize"><h1>{{ data.name }}
-</h1></spam>    </div>
-        {% else %}
-        <h2 style="color: blue"> Welcome, </h2>  </div>
-    {% endif %}
+    <h2 style="color: blue"> Welcome, </h2> <spam style="font-weight: bold; text-transform: capitalize"><h1>{{ user.user_profile.name }}
+</h1></spam>
+    <br>
+        <h4>You have applied for {{ applied }} Jobs.</h4>
+    <br>
+    <br>
+    <br>
+
+
+     <h3 style="width: 25%; background-color: blue;color: white">Latest Notifications</h3>
+
+
+    {% for x in latest_recu %}
+
+        <div style="padding:10px;border: blue solid 5px; margin: 5px;border-radius: 10px">
+            <h3> Opurtinity Code {{ x.op_code }} -- {{ x.responsibilites }}</h3>
+        <ul>
+            <li> Regestration Starts From: {{ x.regestration_start }}</li>
+            <li> Number of Oppenings :{{ x.no_positions }}</li>
+            <li> Last Date of Apply: {{ x.lastdate_apply }}</li>
+        </ul>
+        </div>
+
+    {% endfor %}
+    <br>
+    <p>*For Applying a job go to Current Notification where the applications are accepted.</p>
+    <p>*Latest Notification will be available in Current Notications from the start of application date.</p>
+
+
+    </div>
+
+
+
+
+
     <br>
     <br>
 
@@ -18,20 +69,6 @@
     {{ x }}
     {% endfor %}
 
-     <h3 style="width: 25%; background-color: blue;color: white">Current Notifications</h3>
-
-    {% for x in notif %}
-        <div style="padding:10px;border: blue solid 5px; margin: 5px;border-radius: 10px">
-            <h3> <a href="#">Opurtinity Code {{ x.op_code }} -- {{ x.responsibilites }}</a></h3>
-        <ul>
-            <li> Qualification :{{ x.qualification }}</li>
-            <li>Job Description: {{ x.description }}</li>
-            <li> Number of Oppenings :{{ x.positions }}</li>
-            <li> Last Date of Apply: {{ x.lastdate_apply }}</li>
-        </ul>
-        </div>
-
-    {% endfor %}
 
 
 
@@ -41,13 +78,13 @@
 
     <div style="border: 5px solid black; padding: 5px ; border-radius: 10px;margin-top: 20px">
         <div class="list-group" style="text-align: center">
-            <a href="{% url 'users:home' %}" class="list-group-item list-group-item-action active">
-                Home
+            <a href="#" class="list-group-item list-group-item-action active">
+                Menu
             </a>
 
-            <a href="#" class="list-group-item list-group-item-action">Current recuirment</a>
-            <a href="#" class="list-group-item list-group-item-action">Apply</a>
-            <a href="#" class="list-group-item list-group-item-action">Logout</a>
+            <a href="{% url 'users:current' %}" class="list-group-item list-group-item-action">Current recuirment</a>
+            <a href="{% url 'users:applied' %}" class="list-group-item list-group-item-action">Applied</a>
+
 </div>
 
     </div>

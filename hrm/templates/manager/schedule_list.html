@@ -1,0 +1,43 @@
+
+{% extends 'manager/schedule.html' %}
+{% block body %}
+
+
+    <div style="height: 100%">
+
+    <h3 align="center">The List of Shortlisted Canditates</h3>
+
+
+    <div class="container-fluid" style="font-family: Century">
+<div class="row" style="border: 2px solid blue;text-align: center;font-size: 20px;background-color: blue;color: white">
+    <div class="col-1"style="border: 1px solid black">Post Id</div>
+    <div class="col-2"style="border: 1px solid black">Name</div>
+    <div class="col-2"style="border: 1px solid black">Scheduled On</div>
+    <div class="col-2"style="border: 1px solid black">Interviewer</div>
+    <div class="col-2"style="border: 1px solid black">contact</div>
+    <div class="col-3"style="border: 1px solid black">Email</div>
+
+</div>
+{% for x in data %}
+    <div class="row" >
+        <div class="col-1" style="border: 1px solid black;font-size: 18px">{{ x.post_id}}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 18px">{{ x.applicant_id.applicant.name|title }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 18px">{{ x.schedule_date }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 18px">{{ x.interviewer_id.name }}</div>
+    <div class="col-2" style="border: 1px solid black;font-size: 16px">{{ x.applicant_id.applicant.mobile }}</div>
+    <div class="col-3" style="border: 1px solid black;font-size: 16px">{{ x.applicant_id.email }}</div>
+
+</div>
+{% endfor %}
+    <br>
+    <br>
+    <p> * The list contains applicants related to various post for details refer the Post Id </p>
+
+
+
+
+
+
+</div>
+
+{% endblock %}

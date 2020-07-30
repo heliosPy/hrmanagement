@@ -1,0 +1,36 @@
+{%  extends 'interviewer/home.html' %}
+{% block body %}
+    <div style="height: 400px">
+    <table style="padding:10px;margin:15px; text-align:left; font-size: 20px">
+    <tr>
+        <td style="font-weight: bold; font-size: 25px; width: 350px">Name</td>
+        <td>{{ data.name }}</td>
+
+    </tr>
+    <tr>
+        <td style="font-weight: bold; font-size: 25px">Email</td>
+        <td>{{ data.user.email }}</td>
+
+    </tr>
+    <tr>
+        <td style="font-weight: bold; font-size: 25px">Contact</td>
+        <td>{{ data.contact_no }}</td>
+
+    </tr>
+    <tr>
+        <td style="font-weight: bold; font-size: 25px">
+            Designation
+        </td>
+        <td>{{ data.Designation }}</td>
+
+    </tr>
+    <tr>
+        <td style="font-weight: bold; font-size: 25px">Address</td>
+        <td>{{ data.address }}</td>
+
+    </tr>
+
+    </table>
+    </div>
+
+{% endblock %}

@@ -22,4 +22,11 @@ urlpatterns= [
     path('managerec/', views.manage_recuirtment, name ='manarec'),
     path('updaterec/', views.update_recuirtment, name='updaterec'),
     path('deleterec/', views.delete_recuirtment, name='deleterec'),
+
+    #interviwe schedule
+    path('schedule/', views.schedule_home, name='schedule'),
+    path('schedule/reqlist/', views.recuirtment_schedle_list, name='sc_rec_list'),
+    path('schedule/reqlist/sud/<int:id>', views.requirtment_schedule, name="rec_sched"),
+    path('schedule/ind/<int:id>/<int:op>/', views.ind_schedule, name='app_sched'),
+    path('schedule/list/', views.schedule_list, name='schedule_list')
 ]

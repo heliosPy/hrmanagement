@@ -1,12 +1,18 @@
+from datetime import date
+
 from django.contrib import messages
 from django.shortcuts import render,redirect
 from django.contrib.auth import login, get_user_model,logout
 from django.contrib.auth.decorators import  login_required
 
-from .forms import ManagerLoginForm, DepartmentForm, RecuirtmentForm
+from .forms import ManagerLoginForm, DepartmentForm, RecuirtmentForm, ScheduleForm
 from .models import DepartmentModel, RecuirtmentModel
 from .decorators import  manager_required
 from hradmin.models import Employee
+from interviewer.models import InterviewSchedule
+from .utils import check_recu_applic, check_regestration_ends, check_manager
+
+
 
 User = get_user_model()
 
@@ -14,10 +20,7 @@ User = get_user_model()
 def manager_login(request):
     """Using the managerloginform and inbuilt login method the
         manger is loged in"""
-    if not request.user.is_anonymous and not request.user.is_superuser:
-        if request.user.is_superuser:
-            #"this is  user is already loged in then they are redirected to the home page
-            return redirect('manager:home')
+    check_manager(request.user)
     if request.method == "POST":
         logout(request) #to logout the previous if any
         form = ManagerLoginForm(request.POST)
@@ -94,7 +97,7 @@ def delete_department(request):
 def recuirtment_home(request):
     # home page of recuirtment module of manager app
     qs = RecuirtmentModel.objects.all().count()
-    return render(request, 'manager/recuirtment.html')
+    return render(request, 'manager/recuirtment.html',{'data':qs})
 
 @manager_required(login_url='/manager/login')
 def add_recuirtment(request):
@@ -148,4 +151,60 @@ def delete_recuirtment(request):
         messages.info(request, 'There is no Recuirtment record')
     return render(request, 'manager/delete_recuirtment.html', {'data':qs})
 
+
+"""////////////////////////////Interview Schedule//////////////////////////////"""
+from applicant.models import ApplicationFormModel
+
+
+today = date.today()
+
+@manager_required(login_url='/manager/login/')
+def schedule_home(reqeust):
+    rec = RecuirtmentModel.objects.filter(lastdate_apply__lt=today).count()
+    appli = ApplicationFormModel.objects.filter(applied_on__date=today).count()
+    return render(reqeust, 'manager/schedule.html',{'data':rec,'appli':appli})
+
+@manager_required(login_url='/manager/login/')
+def recuirtment_schedle_list(request):
+    #list of all recuirtmetn where regestration is completed
+    rec = RecuirtmentModel.objects.filter(lastdate_apply__lt=today).order_by("-lastdate_apply")
+    return render(request, "manager/recu_schedule_list.html",{'data':rec})
+
+
+
+
+@manager_required(login_url='/manager/login/')
+def requirtment_schedule(request,id):
+    if not check_regestration_ends(id):
+        return redirect('manager:sc_rec_list')
+    recuirtmt = RecuirtmentModel.objects.get(op_code=id)
+    applicants = ApplicationFormModel.objects.filter(post=recuirtmt)
+    return render(request, 'manager/recu_schedule.html',{'rec':recuirtmt, 'appl':applicants})
+
+@manager_required(login_url='/manager/login/')
+def schedule_list(request):
+    qs = InterviewSchedule.objects.filter(result__exact="Shortlisted")
+    return render(request, 'manager/schedule_list.html', {'data':qs})
+
+
+@manager_required(login_url='/manager/login/')
+def ind_schedule(request,id,op):
+    if not check_recu_applic(id,op):
+        return redirect('manager:sc_rec_list')
+    appli = ApplicationFormModel.objects.get(id=id)
+    rec = RecuirtmentModel.objects.get(op_code=op)
+    if request.method == "POST":
+        form = ScheduleForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.applicant_id = appli
+            instance.post = rec
+            instance.save()
+            return redirect('manager:rec_sched',id=op)
+        else:
+            return render(request, 'manager/schedule_appli.html',
+                          {"data":form, 'applicant':appli, "recuirtment":rec})
+    form =ScheduleForm()
+    return render(request,'manager/schedule_appli.html',
+                  {"data":form,'applicant':appli, "recuirtment":rec})
 

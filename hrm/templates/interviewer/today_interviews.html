@@ -1,0 +1,16 @@
+{%  extends 'interviewer/home.html' %}
+{% block body %}
+    {% for x in data %}
+
+        <div style="padding:10px;border: blue solid 5px; margin: 5px;border-radius: 10px">
+            <h3> <a href="{% url 'interviewer:interview' id=x.applicant_id_id %}">Applicant Name <span style="color: black; font-weight: bold" >{{ x.applicant_id.applicant.name }}</span> for Post {{ x.post.responsibilites }}</a></h3>
+        <ul>
+            <li> Email : {{ x.applicant_id.email}}</li>
+            <li> Gender : {{ x.applicant_id.applicant.gender }}</li>
+            <li> Applicatant Qualification :{{ x.applicant_id.applicant.qualification }}</li>
+            <li> Percentage : {{ x.applicant_id.applicant.percentage }}</li>
+        </ul>
+        </div>
+
+    {% endfor %}
+{% endblock %}

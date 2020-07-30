@@ -29,8 +29,7 @@
 
 
 <h1 style="font-size: 35px; border: blue 5px solid;padding: 10px; font-weight: bold;text-align: center">Update Recuirtment Details</h1>
-    <form a method="post">
-    {% csrf_token %}
+
     <br>
 
 
@@ -60,10 +59,10 @@
         <div class="col-3">{{ data.regestration_start.errors }}</div>
     </div>
     <div class="row">
-        <div class=" col-3" id="r1">Age Limit</div>
+        <div class=" col-3" id="r1">Experience</div>
           <div class="col-1">:</div>
-        <div class="col-5" >{{ data.age_limit }}</div>
-        <div class="col-3">{{ data.age_limit.errors }}</div>
+        <div class="col-5" >{{ data.experience }}</div>
+        <div class="col-3">{{ data.experience.errors }}</div>
     </div>
     <div class="row">
         <div class=" col-3" id="r1">Last Date to Apply</div>  <div class="col-1">:</div>

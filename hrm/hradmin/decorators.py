@@ -6,10 +6,17 @@ but the hradmin is accessable only for the superuser
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.decorators import   user_passes_test
 
+def check_superuser(u):
+    if u.is_authenticated:
+        return u.is_superuser
+    else:
+        return False
+
+
 def hradmin_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=None):
 
     actual_decorator = user_passes_test(
-        lambda u: u.is_superuser,
+        lambda u: check_superuser(u),
         login_url=login_url,
         redirect_field_name=redirect_field_name
     )
