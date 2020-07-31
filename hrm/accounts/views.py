@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 
 
 def homeview(request):
-    return render(request, 'home.html')
+    return render(request, 'new body.html')
 
 def usr_logout(request):
     user = request.user

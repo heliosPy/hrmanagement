@@ -60,48 +60,5 @@
 {% block body %}
 <h1>Welcome to the ADMIN</h1>
 
-    <p>To Add or View Department click the button<form action="#"> <button type="submit">ADD/VIEW Department</button> </form></p>
-    {% if dep_form %}
-        <div class="container-fluid" style="padding: 3px;margin: 3px">
-        <div class="row">
-            <div class="col-5" style="margin-right: 5px;text-align: center; border: gray 5px solid; padding: 10px; border-radius: 10px">
-                <form action="#" method="post">
-        {% csrf_token %}
-          <div >Department ID</div>
-                <div >{{ dep_form.DepIdNo }}</div>
-                    <div >Department Name</div>
-                <div>{{ dep_form.Name}}</div>
 
-
-
-                <div ><button type="submit">Save</button></div>
-
-
-
-        </form>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-5" style="margin-right: 5px; border: gray 5px solid; padding: 2px; border-radius: 10px">
-            <table align="center">
-                <tr>
-                  <th colspan="2" style=" background-color: blue;color: white;font-size: 30px; text-align: center">Department Details</th>
-
-                </tr>
-                <tr>
-                    <th width="200" style="text-align: center;color: blue;font-size: 20px">Department ID</th>
-                    <th width="250" style="text-align: center;color: blue;font-size: 20px">Department Name</th>
-                </tr>
-                    {% for x in dep_mod %}
-                        <tr>
-                         <th style="text-align: center">{{x.DepIdNo}}</th>
-                            <th style="text-align: center">{{x.Name}}</th>
-                        </tr>
-                {% endfor %}
-            </table>
-
-            </div>
-        </div>
-        </div>
-
-    {% endif %}
 {% endblock %}

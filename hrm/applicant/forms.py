@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model, authenticate
+import re
 
 from .models import Applicant, ApplicationFormModel
 
@@ -15,6 +16,15 @@ class ApplicantRegistrationForm(forms.ModelForm):
         model = Applicant
         exclude = ('user',)
 
+
+    def clean_name(self):
+        name=self.cleaned_data["name"]
+        re_name=re.findall(r'^[a-zA-Z.]*$',name)
+        if re_name:
+            return name
+        else:
+            raise forms.ValidationError("The name Should Contain Alphabits only")
+
     def clean_mobile(self):
         no = self.cleaned_data['mobile']
         if len(str(no))!=10:
@@ -26,6 +36,19 @@ class UserRegestrationForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
         fields = ('email', 'password')
+
+
+    def clean_password(self):
+        password=self.cleaned_data["password"]
+        repass =re.findall(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%.])[a-zA-Z0-9@#$%.]{8,}$',password)
+        # this is regular expression for atleast one small& big letters, one numerical, one special character and then the total length is min 8characters
+        if repass:
+            # "The Password Should Contain atleast 8 characters with min one lowercase,one uppercase, one digit and  one special characters '@#$%.'"
+            return password
+        else:
+            raise forms.ValidationError(" min 8 char with atleast 1 (Upper, lower, numeric and @#$%. character ")
+
+
 
     def clean_password2(self):
         password = self.cleaned_data.get("password")

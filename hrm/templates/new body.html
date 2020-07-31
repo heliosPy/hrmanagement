@@ -4,26 +4,29 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <style>
-      .footer {
-
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        background-color: lightslategrey;
-        color: white;
-        text-align: center;
-        hight:60px;
-}
-  </style>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 {% block title %}
     <title>Index</title>
       {% endblock %}
+  <style>
+.footer {
+
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: lightslategrey;
+   color: white;
+   text-align: center;
+    hight:60px;
+}
+    /* Header/Logo Title */
+
+</style>
   </head>
   <body >
+
 
   <div class="containe-fluid" >
       <div class="row" style="background-color: lightslategrey ; height: 100px">
@@ -35,7 +38,7 @@
       {% block menu %}
   </div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="{% url 'home' %}">HOME</a>
+  <a class="navbar-brand" href="{% url 'home' %}">Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -79,22 +82,53 @@
 </nav>
       <div class="container-fluid">
       <div class="row">
-        <div class="col-2" style="background-color: white; height: max-content;
-" >
 
-         {% block sidebar %}{% endblock %}
-        </div>
 
-        <div class="col-10" style=" height: max-content">
+        <div class="col-12" style=" min-height: 450px">
         <div style="margin: 20px; border: 15px solid black; padding: 65px; padding-bottom: 25px; border-radius: 20px; min-height: 500px">
+           {% block body %}
+                       <!-- About Section-->
 
-          {% block body %} this is the body content{% endblock %}
+            <div class="container">
+                <!-- About Section Heading-->
+                <h2 align="center" >About Us </h2>
+
+                <br>
+                <div class="row">
+                    <div class="col-lg-5 ml-auto">
+                        <p  class="lead">     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, q
+                            uis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                            aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                            pariatur. Excepteur sint occaecat cupidatat non proident.
+                    </p></div>
+                    <div class="col-2"></div>
+                    <div class="col-lg-4 mr-auto"><p class="lead">
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, q
+                            uis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                            aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+
+                    </p></div>
+                </div>
+                <!-- About Section Button-->
+                <div class="text-center mt-4">
+                    <a class="btn btn-xl btn-outline-light" href="https://startbootstrap.com/themes/freelancer/">
+                        <i class="fas fa-download mr-2"></i>
+                        Free Download!
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+            {% endblock body %}
+
         </div>
         </div>
 
       </div>
     </div>
-    <div class="footer">
+  <div class="footer">
     <div class="container"><small>Copyright © Acer Hr Management 2020</small></div>
 </div>
 
@@ -104,5 +138,11 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+
+
+
+
+
+
+</body>
 </html>
