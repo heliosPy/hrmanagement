@@ -1,4 +1,5 @@
 from django import forms
+from django.conf import settings
 from django.contrib.auth import get_user_model, authenticate
 import re
 
@@ -12,6 +13,7 @@ class ApplicantRegistrationForm(forms.ModelForm):
     )
 
     gender = forms.ChoiceField(choices=gen, widget=forms.RadioSelect)
+    dob = forms.DateField(input_formats=settings.DATE_INPUT_FORMATS)
     class Meta:
         model = Applicant
         exclude = ('user',)

@@ -1,6 +1,7 @@
 from datetime import date
 
 from django.contrib import messages
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render,redirect
 from django.contrib.auth import login, get_user_model,logout
 from django.contrib.auth.decorators import  login_required
@@ -92,6 +93,25 @@ def delete_department(request):
 
 
 """///////////////////    Recuirtment views//////////////////////"""
+
+
+def check_op_code(request):
+    """this is to check the op_code during creating
+     new recuirtment weather it exist or not through ajax"""
+    if request.is_ajax:
+        id = request.GET.get("opid")
+
+        try:
+            RecuirtmentModel.objects.get(op_code=id)
+            availability = "No"
+        except:
+            availability = "Yes"
+        return HttpResponse(availability)
+    #if manauly url is called the it will redirect to the manager home page
+    return redirect('manager:home')
+
+
+
 
 @manager_required(login_url='/manager/login/')
 def recuirtment_home(request):

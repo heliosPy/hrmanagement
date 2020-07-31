@@ -28,5 +28,8 @@ urlpatterns= [
     path('schedule/reqlist/', views.recuirtment_schedle_list, name='sc_rec_list'),
     path('schedule/reqlist/sud/<int:id>', views.requirtment_schedule, name="rec_sched"),
     path('schedule/ind/<int:id>/<int:op>/', views.ind_schedule, name='app_sched'),
-    path('schedule/list/', views.schedule_list, name='schedule_list')
+    path('schedule/list/', views.schedule_list, name='schedule_list'),
+
+    #Ajax
+    path('check/', views.check_op_code, name="check"),
 ]
